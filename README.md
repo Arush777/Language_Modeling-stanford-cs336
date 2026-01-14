@@ -1,1 +1,2 @@
-This is my implementation of Language Modelling assigments of stanford cs336.
+## Language Modeling Course CS336 
+- This is my implementation of Language Modelling assignments of stanford cs336.
