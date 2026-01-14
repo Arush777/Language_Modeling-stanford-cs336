@@ -63,8 +63,11 @@ Trained a Transformer LM on **TinyStoriesV2-GPT4** for **5,000 steps**.
 - Optimizer: AdamW
 - LR schedule: linear warmup + cosine decay
 
-**Curves**
-![Loss curve (TinyStories, 5k steps)](results/tinystories_5k/loss_curve.png)
-![Perplexity curve (TinyStories, 5k steps)](results/tinystories_5k/ppl_curve.png)
+
+### Loss curve
+![Loss curve](./results/loss_curve.png)
+
+### Perplexity curve
+![Perplexity curve](./results/ppl_curve.png)
 
 
