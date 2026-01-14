@@ -1,73 +1,129 @@
-# CS336 Spring 2025 Assignment 1: Basics
+# Transformer LM: TinyStories Results & Implementation
 
-For a full description of the assignment, see the assignment handout at
-[cs336_spring2025_assignment1_basics.pdf](./cs336_spring2025_assignment1_basics.pdf)
+A from-scratch implementation of a **decoder-only Transformer** with **Rotary Positional Embeddings (RoPE)**, trained on the **TinyStoriesV2-GPT4** dataset.
 
-If you see any issues with the assignment handout or code, please feel free to
-raise a GitHub issue or open a pull request with a fix.
+---
 
-## Setup
+## 🚀 Performance Summary (TinyStories)
 
-### Environment
-We manage our environments with `uv` to ensure reproducibility, portability, and ease of use.
-Install `uv` [here](https://github.com/astral-sh/uv) (recommended), or run `pip install uv`/`brew install uv`.
-We recommend reading a bit about managing projects in `uv` [here](https://docs.astral.sh/uv/guides/projects/#managing-dependencies) (you will not regret it!).
+Trained for **5,000 steps** on an **Apple M2 GPU**. Even with a small model, it learns the simplified grammar and vocabulary of TinyStories effectively.
 
-You can now run any code in the repo using
-```sh
-uv run <python_file_path>
+### Final Validation Metrics
+
+| Metric | Value |
+|---|---:|
+| Validation Loss | **2.2370** |
+| Validation Perplexity | **9.37** |
+
+---
+
+## 📉 Loss & Perplexity Curves
+
+<p align="center">
+  <img src="results/loss_curve.png" width="45%" alt="Train and Validation Loss" />
+  <img src="results/ppl_curve.png" width="45%" alt="Train and Validation Perplexity" />
+</p>
+
+<p align="center">
+  <em><b>Left:</b> Combined Train/Val Loss curve. <b>Right:</b> Combined Train/Val Perplexity curve.</em>
+</p>
+
+---
+
+## 🛠 Training Setup
+
+- **Hardware:** Apple Silicon M2 (MacBook Pro)  
+- **Backend:** PyTorch MPS (`--device mps`)  
+
+### Architecture
+
+- **Model Type:** Decoder-only Transformer + RoPE  
+- **Parameters:** `d_model=256`, `num_layers=4`, `num_heads=8`, `d_ff=1024`  
+- **Context:** `context_length=256`, `batch_size=16`, `rope_theta=10000.0`  
+
+### Tokenizer
+
+- **Tokenizer:** Custom BPE trained on TinyStories  
+- **Vocab Size:** `10,000`
+
+### Optimizer & Schedule
+
+- **Optimizer:** AdamW + Cosine LR Decay  
+- `lr=3e-4`, `min_lr=3e-5`, `warmup_iters=500`  
+- `weight_decay=0.1`, `grad_clip=1.0`
+
+---
+
+## 🏃 Reproduce My Run
+
+> Ensure you have **uv** installed. Steps: train tokenizer → encode data → train LM.
+
+### 1) Train Tokenizer
+
+```bash
+uv run python scripts/train_tokenizer.py \
+  --input data/TinyStoriesV2-GPT4-train.txt \
+  --vocab-size 10000 \
+  --out artifacts/tinystories_tokenizer \
+  --special "<|endoftext|>"
 ```
-and the environment will be automatically solved and activated when necessary.
+### 2) Encode Dataset
+```
+# Encode Training Data
+uv run python scripts/encode_dataset.py \
+  --tok artifacts/tinystories_tokenizer \
+  --input data/TinyStoriesV2-GPT4-train.txt \
+  --output data/tinystories_train.uint32.bin
 
-### Run unit tests
 
-
-```sh
-uv run pytest
+# Encode Validation Data
+uv run python scripts/encode_dataset.py \
+  --tok artifacts/tinystories_tokenizer \
+  --input data/TinyStoriesV2-GPT4-valid.txt \
+  --output data/tinystories_valid.uint32.bin
+```
+### 3) Train Language Model
 ```
 
-Initially, all tests should fail with `NotImplementedError`s.
-To connect your implementation to the tests, complete the
-functions in [./tests/adapters.py](./tests/adapters.py).
-
-### Download data
-Download the TinyStories data and a subsample of OpenWebText
-
-``` sh
-mkdir -p data
-cd data
-
-wget https://huggingface.co/datasets/roneneldan/TinyStories/resolve/main/TinyStoriesV2-GPT4-train.txt
-wget https://huggingface.co/datasets/roneneldan/TinyStories/resolve/main/TinyStoriesV2-GPT4-valid.txt
-
-wget https://huggingface.co/datasets/stanford-cs336/owt-sample/resolve/main/owt_train.txt.gz
-gunzip owt_train.txt.gz
-wget https://huggingface.co/datasets/stanford-cs336/owt-sample/resolve/main/owt_valid.txt.gz
-gunzip owt_valid.txt.gz
-
-cd ..
+uv run python main.py \
+  --train_bin data/tinystories_train.uint32.bin \
+  --valid_bin data/tinystories_valid.uint32.bin \
+  --vocab_size 10000 \
+  --context_length 256 \
+  --batch_size 16 \
+  --d_model 256 \
+  --num_layers 4 \
+  --num_heads 8 \
+  --d_ff 1024 \
+  --rope_theta 10000.0 \
+  --lr 3e-4 \
+  --min_lr 3e-5 \
+  --warmup_iters 500 \
+  --cosine_cycle_iters 5000 \
+  --weight_decay 0.1 \
+  --grad_clip 1.0 \
+  --max_iters 5000 \
+  --log_every 25 \
+  --eval_every 1000 \
+  --eval_iters 100 \
+  --ckpt_path runs/tinystories_5k/checkpoint.pt \
+  --device mps
 ```
+###  Implementation Details
 
-## My results (TinyStories)
+Core logic lives in cs336_basics/:
 
-Trained a Transformer LM on **TinyStoriesV2-GPT4** for **5,000 steps**.
-
-**Final validation metrics**
-- `val_loss`: **2.2370**
-- `val_ppl` (= exp(loss)): **9.37**
-
-**Training setup**
-- Device: Apple Silicon **M2**, using **MPS** backend (PyTorch `--device mps`)
-- Context length: 256
-- Batch size: 16
-- Optimizer: AdamW
-- LR schedule: linear warmup + cosine decay
+- **tokenizer.py, train_bpe.py** — Custom Byte Pair Encoding (BPE)
+- **attention.py** — Scaled dot-product attention, multi-head attention, RoPE integration
+- **transformer.py** — Transformer blocks + the TransformerLM class
+- **optim.py** — AdamW optimizer, gradient clipping, cosine scheduler + warmup
+- **data.py** — Efficient memmap-based batch sampling
+- **serialization.py** — Save/resume checkpoints
 
 
-### Loss curve
-![Loss curve](./results/loss_curve.png)
+###  Notes
 
-### Perplexity curve
-![Perplexity curve](./results/ppl_curve.png)
-
+- Large files are excluded via .gitignore:
+- Dataset files (.txt)
+- Tokenized binary streams (.bin)
 
