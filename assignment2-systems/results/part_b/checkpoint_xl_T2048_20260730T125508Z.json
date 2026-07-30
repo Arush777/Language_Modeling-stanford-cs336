@@ -1,0 +1,98 @@
+[
+  {
+    "strategy": "none",
+    "segment_size": 1,
+    "context_length": 2048,
+    "batch_size": 4,
+    "mode": "forward_backward",
+    "peak_mem_bytes": null,
+    "peak_mem_gib": null,
+    "num_layers": 32,
+    "ok": false,
+    "error": "OOM: CUDA out of memory. Tried to allocate 2.00 GiB. GPU 0 has a total capacity of 79.25 GiB of which 1.28 GiB is free. Including non-PyTorch memory, this process has 77.96 GiB memory in use. Of the allocated memory 76.46 GiB is allocated by PyTorch, and 1.02 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+  },
+  {
+    "strategy": "segment",
+    "segment_size": 1,
+    "context_length": 2048,
+    "batch_size": 4,
+    "mode": "forward_backward",
+    "peak_mem_bytes": 41035279360,
+    "peak_mem_gib": 38.217082023620605,
+    "num_layers": 32,
+    "ok": true,
+    "error": null
+  },
+  {
+    "strategy": "segment",
+    "segment_size": 2,
+    "context_length": 2048,
+    "batch_size": 4,
+    "mode": "forward_backward",
+    "peak_mem_bytes": 47435668480,
+    "peak_mem_gib": 44.1779088973999,
+    "num_layers": 32,
+    "ok": true,
+    "error": null
+  },
+  {
+    "strategy": "segment",
+    "segment_size": 4,
+    "context_length": 2048,
+    "batch_size": 4,
+    "mode": "forward_backward",
+    "peak_mem_bytes": 60239199232,
+    "peak_mem_gib": 56.102126121520996,
+    "num_layers": 32,
+    "ok": true,
+    "error": null
+  },
+  {
+    "strategy": "segment",
+    "segment_size": 8,
+    "context_length": 2048,
+    "batch_size": 4,
+    "mode": "forward_backward",
+    "peak_mem_bytes": null,
+    "peak_mem_gib": null,
+    "num_layers": 32,
+    "ok": false,
+    "error": "OOM: CUDA out of memory. Tried to allocate 2.00 GiB. GPU 0 has a total capacity of 79.25 GiB of which 1.28 GiB is free. Including non-PyTorch memory, this process has 77.97 GiB memory in use. Of the allocated memory 72.90 GiB is allocated by PyTorch, and 4.58 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+  },
+  {
+    "strategy": "segment",
+    "segment_size": 16,
+    "context_length": 2048,
+    "batch_size": 4,
+    "mode": "forward_backward",
+    "peak_mem_bytes": null,
+    "peak_mem_gib": null,
+    "num_layers": 32,
+    "ok": false,
+    "error": "OOM: CUDA out of memory. Tried to allocate 2.00 GiB. GPU 0 has a total capacity of 79.25 GiB of which 1.39 GiB is free. Including non-PyTorch memory, this process has 77.85 GiB memory in use. Of the allocated memory 75.02 GiB is allocated by PyTorch, and 2.33 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+  },
+  {
+    "strategy": "segment",
+    "segment_size": 32,
+    "context_length": 2048,
+    "batch_size": 4,
+    "mode": "forward_backward",
+    "peak_mem_bytes": null,
+    "peak_mem_gib": null,
+    "num_layers": 32,
+    "ok": false,
+    "error": "OOM: CUDA out of memory. Tried to allocate 2.00 GiB. GPU 0 has a total capacity of 79.25 GiB of which 1.39 GiB is free. Including non-PyTorch memory, this process has 77.85 GiB memory in use. Of the allocated memory 74.94 GiB is allocated by PyTorch, and 2.41 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)"
+  },
+  {
+    "strategy": "recursive",
+    "segment_size": 1,
+    "context_length": 2048,
+    "batch_size": 4,
+    "mode": "forward_backward",
+    "peak_mem_bytes": 41034230784,
+    "peak_mem_gib": 38.216105461120605,
+    "num_layers": 32,
+    "ok": true,
+    "error": null
+  }
+]

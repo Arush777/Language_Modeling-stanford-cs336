@@ -66,6 +66,17 @@ Idle GPU jobs can be killed (~2 h). Interactive queue ~6 h wall.
 - Do not `pip install torch` into miniconda for A2 — use this `uv` env only.
 - One profile at a time; stay ~10 GiB under soft quota on home.
 
+## Part B (activation checkpointing)
+
+Code: `cs336_systems/checkpointing.py`, `checkpoint_bench.py`.
+
+```bash
+mkdir -p logs
+bsub < scripts/job_part_b.sh
+```
+
+Artifacts → `results/part_b/`.
+
 ## Part A (implemented)
 
 Code: `cs336_systems/benchmark.py`, `flops.py`, `nvtx_attention.py`, `mixed_precision_experiments.py`, `plot_part_a.py`.
