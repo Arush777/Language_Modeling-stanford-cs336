@@ -1,0 +1,2 @@
+variant,model,world_size,batch_size_per_rank,context_length,vocab_size,warmup,steps,peak_init_gib,peak_before_step_gib,peak_after_step_gib,fwd_ms,bwd_ms,opt_ms,step_ms,step_ms_max_rank_std,num_params,ok,error
+sharded,xl,2,2,256,10000,3,10,12.817102432250977,38.43072271347046,38.91410493850708,221.203138679266,464.6658872254192,215.39095845073462,901.2599843554199,4.626688654628021,3406809600,True,

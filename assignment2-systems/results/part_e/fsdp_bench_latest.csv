@@ -1,0 +1,2 @@
+variant,model,world_size,batch_size_per_rank,context_length,vocab_size,warmup,steps,peak_init_gib,peak_before_step_gib,peak_after_step_gib,fwd_ms,bwd_ms,sync_ms,opt_ms,step_ms,step_ms_max_rank_std,num_params,ok,error
+fsdp,xl,2,2,256,10000,3,10,12.864786148071289,37.70835208892822,25.815796375274658,314.18493650853634,538.4411189705133,7.632666453719138,145.9708957001567,1006.2296176329255,41.29433069340365,3406809600,True,

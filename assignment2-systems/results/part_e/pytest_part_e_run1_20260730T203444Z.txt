@@ -1,0 +1,16 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0 -- /tmp/arushh/cs336-a2-venv/bin/python
+cachedir: .pytest_cache
+rootdir: /u/arushh/Arush/Language_Modeling-stanford-cs336/assignment2-systems
+configfile: pyproject.toml
+plugins: timeout-2.4.0, jaxtyping-0.3.9
+collecting ... collected 6 items
+
+tests/test_sharded_optimizer.py::test_sharded_optimizer[ToyModel] PASSED
+tests/test_sharded_optimizer.py::test_sharded_optimizer[ToyModelWithTiedWeights] PASSED
+tests/test_fsdp.py::test_fsdp_correctness[fp32] PASSED
+tests/test_fsdp.py::test_fsdp_correctness[fp16] PASSED
+tests/test_fsdp.py::test_fsdp_gradient_sync[fp32] PASSED
+tests/test_fsdp.py::test_fsdp_gradient_sync[fp16] PASSED
+
+============================== 6 passed in 55.70s ==============================

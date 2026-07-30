@@ -1,0 +1,80 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.13, pytest-9.0.3, pluggy-1.6.0 -- /tmp/arushh/cs336-a2-venv/bin/python
+cachedir: .pytest_cache
+rootdir: /u/arushh/Arush/Language_Modeling-stanford-cs336/assignment2-systems
+configfile: pyproject.toml
+plugins: timeout-2.4.0, jaxtyping-0.3.9
+collecting ... collected 2 items
+
+tests/test_ddp.py::test_DistributedDataParallel[ToyModel] terminate called after throwing an instance of 'c10::AcceleratorError'
+  what():  CUDA error: CUDA-capable device(s) is/are busy or unavailable
+Search for `cudaErrorDevicesUnavailable' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+Exception raised from setDevice at /pytorch/c10/cuda/impl/CUDAGuardImpl.h:57 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9d (0x154a92c2b05d in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0xc114 (0x154a92cc4114 in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libc10_cuda.so)
+frame #2: <unknown function> + 0x21940 (0x154a92cd9940 in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libc10_cuda.so)
+frame #3: <unknown function> + 0x21abe (0x154a92cd9abe in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libc10_cuda.so)
+frame #4: <unknown function> + 0x6a48121 (0x154ab141d121 in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::ProcessGroupGloo::AsyncWork::execute(c10::intrusive_ptr<c10d::ProcessGroupGloo::AsyncWork, c10::detail::intrusive_target_default_null_type<c10d::ProcessGroupGloo::AsyncWork> > const&) + 0x84 (0x154ab142c194 in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: c10d::ProcessGroupGloo::runLoop(int) + 0x1d4 (0x154ab142c3a4 in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libtorch_cpu.so)
+frame #7: <unknown function> + 0xdbad4 (0x154b17733ad4 in /lib64/libstdc++.so.6)
+frame #8: <unknown function> + 0x8a002 (0x154b483ab002 in /lib64/libc.so.6)
+frame #9: <unknown function> + 0x10f070 (0x154b48430070 in /lib64/libc.so.6)
+
+W0730 14:25:27.220000 377549 torch/multiprocessing/spawn.py:165] Terminating process 377674 via signal SIGTERM
+FAILED
+tests/test_ddp.py::test_DistributedDataParallel[ToyModelWithTiedWeights] terminate called after throwing an instance of 'c10::AcceleratorError'
+  what():  CUDA error: CUDA-capable device(s) is/are busy or unavailable
+Search for `cudaErrorDevicesUnavailable' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+Exception raised from setDevice at /pytorch/c10/cuda/impl/CUDAGuardImpl.h:57 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9d (0x14bec77b805d in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0xc114 (0x14bec7851114 in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libc10_cuda.so)
+frame #2: <unknown function> + 0x21940 (0x14bec7866940 in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libc10_cuda.so)
+frame #3: <unknown function> + 0x21abe (0x14bec7866abe in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libc10_cuda.so)
+frame #4: <unknown function> + 0x6a48121 (0x14bee5faa121 in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: c10d::ProcessGroupGloo::AsyncWork::execute(c10::intrusive_ptr<c10d::ProcessGroupGloo::AsyncWork, c10::detail::intrusive_target_default_null_type<c10d::ProcessGroupGloo::AsyncWork> > const&) + 0x84 (0x14bee5fb9194 in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: c10d::ProcessGroupGloo::runLoop(int) + 0x1d4 (0x14bee5fb93a4 in /tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/lib/libtorch_cpu.so)
+frame #7: <unknown function> + 0xdbad4 (0x14bf4c2c0ad4 in /lib64/libstdc++.so.6)
+frame #8: <unknown function> + 0x8a002 (0x14bf7cf38002 in /lib64/libc.so.6)
+frame #9: <unknown function> + 0x10f070 (0x14bf7cfbd070 in /lib64/libc.so.6)
+
+W0730 14:25:58.919000 377549 torch/multiprocessing/spawn.py:165] Terminating process 377954 via signal SIGTERM
+FAILED
+
+=================================== FAILURES ===================================
+____________________ test_DistributedDataParallel[ToyModel] ____________________
+tests/test_ddp.py:30: in test_DistributedDataParallel
+    mp.spawn(
+/tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/multiprocessing/spawn.py:340: in spawn
+    return start_processes(fn, args, nprocs, join, daemon, start_method="spawn")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/multiprocessing/spawn.py:296: in start_processes
+    while not context.join():
+              ^^^^^^^^^^^^^^
+/tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/multiprocessing/spawn.py:192: in join
+    raise ProcessExitedException(
+E   torch.multiprocessing.spawn.ProcessExitedException: process 1 terminated with signal SIGABRT
+____________ test_DistributedDataParallel[ToyModelWithTiedWeights] _____________
+tests/test_ddp.py:30: in test_DistributedDataParallel
+    mp.spawn(
+/tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/multiprocessing/spawn.py:340: in spawn
+    return start_processes(fn, args, nprocs, join, daemon, start_method="spawn")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/multiprocessing/spawn.py:296: in start_processes
+    while not context.join():
+              ^^^^^^^^^^^^^^
+/tmp/arushh/cs336-a2-venv/lib/python3.13/site-packages/torch/multiprocessing/spawn.py:192: in join
+    raise ProcessExitedException(
+E   torch.multiprocessing.spawn.ProcessExitedException: process 1 terminated with signal SIGABRT
+=========================== short test summary info ============================
+FAILED tests/test_ddp.py::test_DistributedDataParallel[ToyModel] - torch.mult...
+FAILED tests/test_ddp.py::test_DistributedDataParallel[ToyModelWithTiedWeights]
+========================= 2 failed in 90.44s (0:01:30) =========================

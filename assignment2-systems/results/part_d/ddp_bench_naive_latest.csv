@@ -1,0 +1,2 @@
+variant,model,world_size,batch_size_per_rank,context_length,vocab_size,warmup,steps,fwd_ms,bwd_ms,comm_ms,opt_ms,step_ms,step_ms_max_rank_std,num_params,grad_bytes_per_step,ok,error
+naive,xl,2,2,256,10000,5,10,398.2992550358176,611.3346547819674,209.98311499133706,315.291659720242,1534.908684529364,28.954813147061287,3406809600,13627238400,True,

@@ -40,11 +40,13 @@ Mark items as you finish. Answers go in **writeup.pdf** (typeset). Code goes in 
 
 ## Part F — Written calcs (~17 pts)
 
-- [ ] `alternate_ring_all_reduce`
-- [ ] `data_parallel_calcs`
-- [ ] `fsdp_calcs`
-- [ ] `tp_calcs`
-- [ ] `fsdp_tp_calcs`
+Answers: `writeup/PART_F.md`
+
+- [x] `alternate_ring_all_reduce`
+- [x] `data_parallel_calcs`
+- [x] `fsdp_calcs`
+- [x] `tp_calcs`
+- [x] `fsdp_tp_calcs`
 
 ## Part G — Leaderboard (optional, 10 pts)
 
