@@ -19,10 +19,9 @@ This is a course/study implementation repo. Keep it public only if you want to s
 ```text
 Language_Modeling-stanford-cs336/
 ├── assignment1-basics/
+├── assignment2-systems/   # CS336 A2 (systems); see NOTES.md for CCC + disk
 └── README.md
 ```
-
-Update this tree if you add more assignments.
 
 ## How to use
 
