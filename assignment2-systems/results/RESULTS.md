@@ -1,17 +1,27 @@
 # Assignment 2 Systems — Results index
 
-Paths under `assignment2-systems/`.
+**How to read this folder**
 
-| Part | Status | Where to look |
-|------|--------|----------------|
-| **A** Profiling | Done | `results/part_a/` |
-| **B** Checkpointing | Done | `results/part_b/` |
-| **C** Attention / Flash | Done (+ Triton d=128 patch merged) | **`results/part_c/flash_bench_merged_latest.csv`** |
-| **D** DDP | Done (benches OK; pytest GPU harness flake documented) | `results/part_d/README.md` |
-| **E** Sharded opt + FSDP | Done (job `1412621`) | **`results/part_e/README.md`** |
-| **F** Written calcs | Done | **`writeup/PART_F.md`** |
-| **G** Leaderboard | Skipped for now | Optional; needs 2×B200 |
+| Kind | What it is | Push to GitHub? |
+|------|------------|-----------------|
+| `*.csv` | Raw measurements (reproducible tables) | Yes (small) |
+| `figures/*.png` | **Plots for humans / writeup / README** | **Yes — this is the presentation** |
+| `*.txt` | pytest logs | Optional |
+| `*.nsys-rep` / `*.pickle` | Huge profiler dumps | **No** (gitignore); export screenshots if needed |
 
-## Push policy
+Regenerate all B–E plots from CSVs:
 
-Commit CSV + README + code under **Arush777**. Do not push large `.nsys-rep` / memory pickles.
+```bash
+cd assignment2-systems
+uv run python -m cs336_systems.plot_results
+```
+
+| Part | Status | Open this |
+|------|--------|-----------|
+| **A** Profiling | Done | [`part_a/figures/`](part_a/figures/) + [`part_a/README.md`](part_a/README.md) |
+| **B** Checkpointing | Done | [`part_b/README.md`](part_b/README.md) (embeds figure) |
+| **C** Attention / Flash | Done | [`part_c/README.md`](part_c/README.md) |
+| **D** DDP | Done | [`part_d/README.md`](part_d/README.md) |
+| **E** Sharded opt + FSDP | Done | [`part_e/README.md`](part_e/README.md) |
+| **F** Written calcs | Done | [`../writeup/PART_F.md`](../writeup/PART_F.md) (equations, not plots) |
+| **G** Leaderboard | Skipped | — |

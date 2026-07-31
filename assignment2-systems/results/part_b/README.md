@@ -1,8 +1,16 @@
-# Part B outputs
+# Part B — activation checkpointing
 
-| Path | Contents |
-|------|----------|
-| `results/part_b/checkpoint_latest.csv` | Peak HBM vs checkpoint strategy |
-| `results/part_b/*.json` | Full dump |
+**Raw data:** `checkpoint_latest.csv` (and dated copies).  
+**Figures (for GitHub / writeup):** `figures/*.png`
 
-Submit: `bsub < scripts/job_part_b.sh` (1× A100-80GB).
+## Peak memory (xl, B=4, T=2048, fwd+bwd)
+
+![Checkpoint peak memory](figures/checkpoint_peak_mem.png)
+
+`strategy=none` OOMs on this config (not shown as a bar). Segment checkpointing brings peak HBM down to the ~38 GiB range by recomputing activations instead of storing all of them.
+
+## How to re-plot
+
+```bash
+uv run python -m cs336_systems.plot_results
+```

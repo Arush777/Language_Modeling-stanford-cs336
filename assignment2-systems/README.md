@@ -56,7 +56,11 @@ Same idea for FlashAttention: first a slow-but-clear PyTorch tile loop, then a f
 
 ## 2. What results did I get?
 
-Pointers: [`results/RESULTS.md`](./results/RESULTS.md). Highlights only.
+Pointers: [`results/RESULTS.md`](./results/RESULTS.md).
+
+**How results are meant to be read:** each `results/part_*/` folder has (1) **CSV/txt** = raw numbers from the GPU jobs, and (2) **`figures/*.png`** = plots generated from those CSVs for GitHub and the writeup. Open the part README — figures are embedded there. Rebuild plots anytime with `uv run python -m cs336_systems.plot_results`.
+
+Highlights only:
 
 ### Part A — profiling
 
